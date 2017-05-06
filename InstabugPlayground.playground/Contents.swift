@@ -61,7 +61,7 @@ class Application {
     
     func findBugs(state: Bug.State?, timeRange: TimeRange) -> [Bug] {
         // To be implemented
-        
+
         /* Initializing output array */
         var outputBugs: [Bug] = []
         
@@ -115,7 +115,7 @@ class UnitTests : XCTestCase {
         let bug1 = Bug(state: .open, timestamp: Date(), comment: "Bug 1")
         let bug2 = Bug(state: .open, timestamp: date26HoursAgo, comment: "Bug 2")
         let bug3 = Bug(state: .closed, timestamp: date2WeeksAgo, comment: "Bug 2")
-        
+
         return [bug1, bug2, bug3]
     }()
     
@@ -123,13 +123,13 @@ class UnitTests : XCTestCase {
         let application = Application(bugs: self.bugs)
         return application
     }()
-    
+
     // Test 1
     func testFindOpenBugsInThePastDay() {
         let bugs = application.findBugs(state: .open, timeRange: .pastDay)
         XCTAssertTrue(bugs.count == 1, "Invalid number of bugs")
         XCTAssertEqual(bugs[0].comment, "Bug 1", "Invalid bug order")
-        
+    
     }
     
     // Test 2
@@ -150,7 +150,7 @@ class UnitTests : XCTestCase {
     func testInitializeBugWithJSON() {
         do {
             let json = "{\"state\": \"open\",\"timestamp\": 1493393946,\"comment\": \"Bug via JSON\"}"
-            
+
             let bug = try Bug(jsonString: json)
             
             XCTAssertEqual(bug.comment, "Bug via JSON")
